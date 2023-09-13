@@ -1,0 +1,75 @@
+:root{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    background-color: black;
+    color: white;
+    height: 800px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display{
+    text-align: end;
+    height: 200px;
+    width: 485px;
+    font-size: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#grid{
+    height: 600px;
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+}
+
+button{
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 50px;
+    font-size: 45px;
+}
+
+[data-operator]{
+    background-color: orange;
+    color: white;
+    font-size: 60px;
+}
+
+[data-number], #decimal{
+    background-color: rgb(77, 76, 76);
+    color: white;
+}
+
+#zero{
+    width: 250px;
+}
+
+.hide#zero{
+    opacity: 0;
+    width: 100px;
+}
+
+.prev-screen{
+    min-height: 80px;
+}
+
+.current-screen{
+    min-height: 100px;
+}

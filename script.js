@@ -7,7 +7,9 @@ const numberButtons = document.querySelectorAll("[data-number]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const equalsButton = document.getElementById("equal");
 const clearButton = document.getElementById("clear");
-const decimalButton = document.querySelector("#decimal");
+const inverseButton = document.getElementById("inverse");
+const percentButton = document.getElementById("percent");
+const decimalButton = document.getElementById("decimal");
 const previousOperationScreen = document.querySelector(".prev-screen");
 const currentOperationScreen = document.querySelector(".current-screen");
 
@@ -15,6 +17,8 @@ window.addEventListener("keydown", handleKeyboardInput);
 equalsButton.addEventListener("click", evaluate);
 clearButton.addEventListener("click", clear);
 decimalButton.addEventListener("click", appendDecimal);
+inverseButton.addEventListener("click", inverse);
+percentButton.addEventListener("click", percentage);
 
 numberButtons.forEach((button) =>
   button.addEventListener("click", () => appendNumber(button.textContent))
@@ -25,9 +29,7 @@ operatorButtons.forEach((button) =>
 );
 
 function appendNumber(number){
-  if(currentOperationScreen.textContent === "0" || shouldResetScreen){
-    resetScreen();
-  }
+  if(currentOperationScreen.textContent === "0" || shouldResetScreen) resetScreen();
   currentOperationScreen.textContent += number;
 }
 
@@ -46,12 +48,14 @@ function clear(){
 
 function appendDecimal(){
   if(shouldResetScreen) resetScreen();
-  if(currentOperationScreen.textContent === ""){
-    currentOperationScreen.textContent = "0";
-  }
+  if(currentOperationScreen.textContent === "") currentOperationScreen.textContent = "0";
   if(currentOperationScreen.textContent.includes(".")) return;
   currentOperationScreen.textContent += ".";
 }
+
+function deleteNumber() {
+    currentOperationScreen.textContent = currentOperationScreen.textContent.toString().slice(0, -1);
+}  
 
 function setOperation(operator){
   if(currentOperation !== null) evaluate();
@@ -79,7 +83,7 @@ function roundResult(number) {
 
 function handleKeyboardInput(e){
   if(e.key >= 0 && e.key <= 9) appendNumber(e.key);
-  if(e.key === ".") appenddecimal();
+  if(e.key === ".") appendDecimal();
   if(e.key === "=" || e.key === "Enter") evaluate();
   if(e.key === "Backspace") deleteNumber();
   if(e.key === "Escape") clear();
@@ -125,4 +129,20 @@ function operate(operator, a, b){
     default:
       return null;
   }
+}
+
+function inverse(){
+    if(currentOperationScreen.textContent > 0){
+        currentOperationScreen.textContent = `-${currentOperationScreen.textContent}`;
+    }else{
+        currentOperationScreen.textContent = currentOperationScreen.textContent.toString().slice(3, 2);
+    }
+}
+
+function percentage(){
+    if(currentOperationScreen.textContent >= 0){
+        return currentOperationScreen.textContent/100;
+    }else{
+        return null;
+    }
 }
