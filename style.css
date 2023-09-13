@@ -1,6 +1,7 @@
 :root{
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body{
@@ -29,7 +30,6 @@ main{
     font-size: 60px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 #grid{
@@ -57,19 +57,36 @@ button{
     color: white;
 }
 
-#zero{
-    width: 250px;
-}
-
 .hide#zero{
     opacity: 0;
     width: 100px;
 }
 
+#equal{
+    background-color: orange;
+    color: white;
+}
+
 .prev-screen{
     min-height: 80px;
+    font-size: 40px;
+    padding-top: 20px;
 }
 
 .current-screen{
     min-height: 100px;
+}
+
+footer{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 25px;
+    font-family: Helvetica;
+}
+
+i{
+    color: white;
 }
